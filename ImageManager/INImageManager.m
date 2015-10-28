@@ -36,22 +36,22 @@
 
 #pragma mark - Image
 - (void)lazyLoadImageWithURL:(NSURL*)imageURL
-                  completion:(void (^)(UIImage *image))completionBlock {
+                  completion:(void (^)(UIImage *image, BOOL fromCached))completionBlock {
     // If no completion block is passed in, no-op
     if (!completionBlock) {
         return;
     }
     
-    UIImage *cachedImage = [self.imageQueue valueForKey:imageURL.absoluteString];
+    UIImage *cachedImage = [self.imageCache objectForKey:imageURL.absoluteString];
     if (cachedImage) {
-        completionBlock(cachedImage);
+        completionBlock(cachedImage, YES);
     } else {
         dispatch_async(self.imageQueue, ^{
             NSData* imageData = [NSData dataWithContentsOfURL:imageURL];
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIImage *image = [UIImage imageWithData:imageData];
                 [self.imageCache setObject:image forKey:imageURL.absoluteString];
-                completionBlock(image);
+                completionBlock(image, NO);
             });
         });
     }

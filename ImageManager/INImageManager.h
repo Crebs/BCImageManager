@@ -20,7 +20,7 @@
  * @param completionBlock Block to call back once image is obtained.
  */
 - (void)lazyLoadImageWithURL:(NSURL*)imageURL
-                  completion:(void (^)(UIImage *image))completionBlock;
+                  completion:(void (^)(UIImage *image, BOOL fromCached))completionBlock;
 
 /* @brief Clear cache on the ImageManager
  *

@@ -12,6 +12,11 @@
 		23209CD81BE11B6400FAA580 /* ImageManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 23209CD71BE11B6400FAA580 /* ImageManagerTests.m */; };
 		23209CE41BE11BB500FAA580 /* INImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 23209CE21BE11BB500FAA580 /* INImageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		23209CE51BE11BB500FAA580 /* INImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23209CE31BE11BB500FAA580 /* INImageManager.m */; };
+		23209CEA1BE132DF00FAA580 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 23209CE91BE132DF00FAA580 /* Cartfile */; };
+		23209D011BE134D100FAA580 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 23209CFA1BE134D100FAA580 /* .gitignore */; };
+		23209D031BE134D100FAA580 /* TestAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = 23209CFC1BE134D100FAA580 /* TestAsync.m */; };
+		23209D041BE134D100FAA580 /* XCTAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 23209CFE1BE134D100FAA580 /* XCTAsyncTestCase.m */; };
+		23209D061BE134D100FAA580 /* xctestify.sh in Resources */ = {isa = PBXBuildFile; fileRef = 23209D001BE134D100FAA580 /* xctestify.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +38,14 @@
 		23209CD91BE11B6400FAA580 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23209CE21BE11BB500FAA580 /* INImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INImageManager.h; sourceTree = "<group>"; };
 		23209CE31BE11BB500FAA580 /* INImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INImageManager.m; sourceTree = "<group>"; };
+		23209CE91BE132DF00FAA580 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		23209CFA1BE134D100FAA580 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		23209CFB1BE134D100FAA580 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		23209CFC1BE134D100FAA580 /* TestAsync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAsync.m; sourceTree = "<group>"; };
+		23209CFD1BE134D100FAA580 /* XCTAsyncTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCTAsyncTestCase.h; sourceTree = "<group>"; };
+		23209CFE1BE134D100FAA580 /* XCTAsyncTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCTAsyncTestCase.m; sourceTree = "<group>"; };
+		23209CFF1BE134D100FAA580 /* XCTAsyncTestCase.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XCTAsyncTestCase.podspec; sourceTree = "<group>"; };
+		23209D001BE134D100FAA580 /* xctestify.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = xctestify.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +70,7 @@
 		23209CBE1BE11B6400FAA580 = {
 			isa = PBXGroup;
 			children = (
+				23209CE91BE132DF00FAA580 /* Cartfile */,
 				23209CCA1BE11B6400FAA580 /* ImageManager */,
 				23209CD61BE11B6400FAA580 /* ImageManagerTests */,
 				23209CC91BE11B6400FAA580 /* Products */,
@@ -86,10 +100,25 @@
 		23209CD61BE11B6400FAA580 /* ImageManagerTests */ = {
 			isa = PBXGroup;
 			children = (
+				23209CF91BE134D100FAA580 /* xctest-additions-master */,
 				23209CD71BE11B6400FAA580 /* ImageManagerTests.m */,
 				23209CD91BE11B6400FAA580 /* Info.plist */,
 			);
 			path = ImageManagerTests;
+			sourceTree = "<group>";
+		};
+		23209CF91BE134D100FAA580 /* xctest-additions-master */ = {
+			isa = PBXGroup;
+			children = (
+				23209CFA1BE134D100FAA580 /* .gitignore */,
+				23209CFB1BE134D100FAA580 /* README.md */,
+				23209CFC1BE134D100FAA580 /* TestAsync.m */,
+				23209CFD1BE134D100FAA580 /* XCTAsyncTestCase.h */,
+				23209CFE1BE134D100FAA580 /* XCTAsyncTestCase.m */,
+				23209CFF1BE134D100FAA580 /* XCTAsyncTestCase.podspec */,
+				23209D001BE134D100FAA580 /* xctestify.sh */,
+			);
+			path = "xctest-additions-master";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23209CEA1BE132DF00FAA580 /* Cartfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +220,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23209D011BE134D100FAA580 /* .gitignore in Resources */,
+				23209D061BE134D100FAA580 /* xctestify.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23209D031BE134D100FAA580 /* TestAsync.m in Sources */,
+				23209D041BE134D100FAA580 /* XCTAsyncTestCase.m in Sources */,
 				23209CD81BE11B6400FAA580 /* ImageManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

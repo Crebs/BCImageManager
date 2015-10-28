@@ -8,7 +8,10 @@
 
 #import <XCTest/XCTest.h>
 
-@interface ImageManagerTests : XCTestCase
+#import "XCTAsyncTestCase.h"
+#import "INImageManager.h"
+
+@interface ImageManagerTests : XCTAsyncTestCase
 
 @end
 
@@ -16,7 +19,7 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    [[INImageManager sharedInstance] clearCache];
 }
 
 - (void)tearDown {
@@ -24,16 +27,45 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+- (void)testLazyLoadImageWithURL_WithValidURLAndImageNotAlreadyCached_ShouldReturnImage {
+    NSURL *url = [NSURL URLWithString:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference=CmRdAAAAclnpOlsh2T_TI-kFGXXS5OHlMpU3sW0nGmN1SH9oug5LGA0gkZzrBwBQJKstI57uwQ5Dsb2NFFZTBJJSab_8Kt9p6ghdUzdTc825ff_4GHQR_-CZ3fTo8ERxz_7rv-tCEhAotejH5diEVfcT1M-qYmUyGhQS8o7PORiz3eUoj48nKAFrBbt0mw&key=AIzaSyBmJBy7qBczekcmYIHVMM0vzPGh8zMJ6ZM"];
+    [self prepare];
+    [[INImageManager sharedInstance] lazyLoadImageWithURL:url completion:^(UIImage *image, BOOL fromCache) {
+        XCTAssertNotNil(image);
+        XCTAssertFalse(fromCache);
+        [self notify:kXCTUnitWaitStatusSuccess];
     }];
+    
+    // Will wait for 20.0 seconds before expecting the test to have status success
+    // Potential statuses are:
+    //    kXCTUnitWaitStatusUnknown,    initial status
+    //    kXCTUnitWaitStatusSuccess,    indicates a successful callback
+    //    kXCTUnitWaitStatusFailure,    indicates a failed callback, e.g login operation failed
+    //    kXCTUnitWaitStatusCancelled,  indicates the operation was cancelled
+    [self waitForStatus:kXCTUnitWaitStatusSuccess timeout:20.0];
 }
 
+- (void)testLazyLoadImageWithURL_WithValidURLAndImageAlreadyCached_ShouldReturnImage {
+    NSURL *url = [NSURL URLWithString:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference=CmRdAAAAclnpOlsh2T_TI-kFGXXS5OHlMpU3sW0nGmN1SH9oug5LGA0gkZzrBwBQJKstI57uwQ5Dsb2NFFZTBJJSab_8Kt9p6ghdUzdTc825ff_4GHQR_-CZ3fTo8ERxz_7rv-tCEhAotejH5diEVfcT1M-qYmUyGhQS8o7PORiz3eUoj48nKAFrBbt0mw&key=AIzaSyBmJBy7qBczekcmYIHVMM0vzPGh8zMJ6ZM"];
+    [self prepare];
+    [[INImageManager sharedInstance] lazyLoadImageWithURL:url
+                                               completion:^(UIImage *image, BOOL fromCache) {
+                                                   XCTAssertNotNil(image);
+                                                   XCTAssertFalse(fromCache);
+                                                   [[INImageManager sharedInstance] lazyLoadImageWithURL:url
+                                                                                              completion:^(UIImage *image, BOOL fromCache) {
+                                                                                                  XCTAssertNotNil(image);
+                                                                                                  // Should be cached
+                                                                                                  XCTAssertTrue(fromCache);
+                                                                                                  [self notify:kXCTUnitWaitStatusSuccess];
+                                                                                              }];
+                                               }];
+    // Will wait for 20.0 seconds before expecting the test to have status success
+    // Potential statuses are:
+    //    kXCTUnitWaitStatusUnknown,    initial status
+    //    kXCTUnitWaitStatusSuccess,    indicates a successful callback
+    //    kXCTUnitWaitStatusFailure,    indicates a failed callback, e.g login operation failed
+    //    kXCTUnitWaitStatusCancelled,  indicates the operation was cancelled
+    [self waitForStatus:kXCTUnitWaitStatusSuccess timeout:20.0];
+}
 @end
