@@ -50,7 +50,9 @@
             NSData* imageData = [NSData dataWithContentsOfURL:imageURL];
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIImage *image = [UIImage imageWithData:imageData];
-                [self.imageCache setObject:image forKey:imageURL.absoluteString];
+                if (image) {
+                    [self.imageCache setObject:image forKey:imageURL.absoluteString];
+                }
                 completionBlock(image, NO);
             });
         });

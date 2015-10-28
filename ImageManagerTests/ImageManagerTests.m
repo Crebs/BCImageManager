@@ -68,4 +68,24 @@
     //    kXCTUnitWaitStatusCancelled,  indicates the operation was cancelled
     [self waitForStatus:kXCTUnitWaitStatusSuccess timeout:20.0];
 }
+
+
+- (void)testLazyLoadImageWithURL_WithGarbageURLAndImageNotAlreadyCached_ShouldReturnNilImageNotFromCache {
+    NSURL *url = [NSURL URLWithString:@"https://garbage.com/some/garbagehere"];
+    [self prepare];
+    [[INImageManager sharedInstance] lazyLoadImageWithURL:url completion:^(UIImage *image, BOOL fromCache) {
+        XCTAssertNil(image);
+        XCTAssertFalse(fromCache);
+        [self notify:kXCTUnitWaitStatusSuccess];
+    }];
+    
+    // Will wait for 20.0 seconds before expecting the test to have status success
+    // Potential statuses are:
+    //    kXCTUnitWaitStatusUnknown,    initial status
+    //    kXCTUnitWaitStatusSuccess,    indicates a successful callback
+    //    kXCTUnitWaitStatusFailure,    indicates a failed callback, e.g login operation failed
+    //    kXCTUnitWaitStatusCancelled,  indicates the operation was cancelled
+    [self waitForStatus:kXCTUnitWaitStatusSuccess timeout:20.0];
+}
+
 @end
