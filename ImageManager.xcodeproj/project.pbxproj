@@ -12,7 +12,6 @@
 		23209CD81BE11B6400FAA580 /* ImageManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 23209CD71BE11B6400FAA580 /* ImageManagerTests.m */; };
 		23209CE41BE11BB500FAA580 /* INImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 23209CE21BE11BB500FAA580 /* INImageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		23209CE51BE11BB500FAA580 /* INImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23209CE31BE11BB500FAA580 /* INImageManager.m */; };
-		23209CEA1BE132DF00FAA580 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 23209CE91BE132DF00FAA580 /* Cartfile */; };
 		23209D031BE134D100FAA580 /* TestAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = 23209CFC1BE134D100FAA580 /* TestAsync.m */; };
 		23209D041BE134D100FAA580 /* XCTAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 23209CFE1BE134D100FAA580 /* XCTAsyncTestCase.m */; };
 		23209D061BE134D100FAA580 /* xctestify.sh in Resources */ = {isa = PBXBuildFile; fileRef = 23209D001BE134D100FAA580 /* xctestify.sh */; };
@@ -209,7 +208,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23209CEA1BE132DF00FAA580 /* Cartfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +410,7 @@
 				23209CDE1BE11B6400FAA580 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		23209CDF1BE11B6400FAA580 /* Build configuration list for PBXNativeTarget "ImageManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +419,7 @@
 				23209CE11BE11B6400FAA580 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
